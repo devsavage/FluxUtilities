@@ -1,1 +1,5 @@
-# Lang file for FluxUtilites
+# Lang file for FluxUtilities
+
+# Inter-Mod Things
+mod.thermalexpansion.missing=Thermal Expansion was not found. Cannot load plugins.
+mod.thermalexpansion.found=Thermal Expansion Plugin Loaded.

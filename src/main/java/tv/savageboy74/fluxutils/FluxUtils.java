@@ -23,12 +23,14 @@ package tv.savageboy74.fluxutils;
  * THE SOFTWARE.
  */
 
+import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import tv.savageboy74.fluxutils.util.LogHelper;
 import tv.savageboy74.fluxutils.util.Reference;
+import tv.savageboy74.fluxutils.util.StringHelper;
 
 @Mod(modid = Reference.mod_id, name = Reference.mod_name, version = Reference.mc_version, dependencies = Reference.dependencies)
 public class FluxUtils
@@ -51,6 +53,15 @@ public class FluxUtils
     @Mod.EventHandler
     public void postInit(FMLPostInitializationEvent event)
     {
+        if (Loader.isModLoaded("ThermalExpansion"))
+        {
+            LogHelper.info(StringHelper.localize("mod.thermalexpansion.found"));
+        }
+
+        else
+        {
+            LogHelper.error(StringHelper.localize("mod.thermalexpansion.missing"));
+        }
         LogHelper.info("Post-Initialization Completed.");
     }
 }
