@@ -9,9 +9,9 @@ CoFH Core: 3.0.0RC7+
 
 Links
 =====
-Download  
-CurseForge  
-Minecraft Forums  
+Download Links  
+View on CurseForge  
+View on Minecraft Forums  
 
 <br>
 
