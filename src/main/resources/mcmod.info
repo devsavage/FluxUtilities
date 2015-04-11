@@ -1,0 +1,16 @@
+[
+{
+  "modid": "fluxutilites",
+  "name": "FluxUtilites",
+  "description": "An add-on for Thermal Expansion that adds new RF based blocks/items/machines etc.",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["savageboy74"],
+  "credits": "TeamCoFH for the backbone of this mod.",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]

@@ -1,5 +1,5 @@
 # FluxUtilities
-This is an add-on mod for Thermal Expansion. Adding many new blocks/items to Minecraft.  
+This is an add-on for Thermal Expansion. Adding many new RF based blocks/items to Minecraft.  
 
 Requirements
 =====
