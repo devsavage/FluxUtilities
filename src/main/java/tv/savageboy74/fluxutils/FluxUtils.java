@@ -34,6 +34,7 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.IChatComponent;
+import net.minecraftforge.common.MinecraftForge;
 import tv.savageboy74.fluxutils.common.block.FluxBlocks;
 import tv.savageboy74.fluxutils.common.crafting.FluxRecipes;
 import tv.savageboy74.fluxutils.common.creativetab.FluxCreativeTab;
@@ -69,16 +70,13 @@ public class FluxUtils
 
         //Check For Updates
         //TODO Config option
-        boolean updateCheck = true;
-        if (updateCheck)
-        {
-            try {
-                LogHelper.info("Checking for updates...");
-                UpdateChecker.checkForUpdates();
-            } catch (IOException e) {
-                LogHelper.info("An error occurred while trying to check for updates.");
-                e.printStackTrace();
-            }
+        FMLCommonHandler.instance().bus().register(this);
+        MinecraftForge.EVENT_BUS.register(this);
+        try {
+            LogHelper.info("Checking for updates...");
+            UpdateChecker.checkForUpdates();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
         LogHelper.info("Pre-Initialization Completed.");
