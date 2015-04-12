@@ -44,6 +44,9 @@ import tv.savageboy74.fluxutils.common.tileentity.FluxTileEntities;
 import tv.savageboy74.fluxutils.util.LogHelper;
 import tv.savageboy74.fluxutils.util.Reference;
 import tv.savageboy74.fluxutils.util.StringHelper;
+import tv.savageboy74.fluxutils.util.UpdateChecker;
+
+import java.io.IOException;
 
 @Mod(modid = Reference.mod_id, name = Reference.mod_name, version = Reference.mc_version, dependencies = Reference.dependencies)
 public class FluxUtils
@@ -63,6 +66,20 @@ public class FluxUtils
 
         ConfigHandler.init(event.getSuggestedConfigurationFile());
         FMLCommonHandler.instance().bus().register(new ConfigHandler());
+
+        //Check For Updates
+        //TODO Config option
+        boolean updateCheck = true;
+        if (updateCheck)
+        {
+            try {
+                LogHelper.info("Checking for updates...");
+                UpdateChecker.checkForUpdates();
+            } catch (IOException e) {
+                LogHelper.info("An error occurred while trying to check for updates.");
+                e.printStackTrace();
+            }
+        }
 
         LogHelper.info("Pre-Initialization Completed.");
     }

@@ -48,7 +48,6 @@ public class UpdateChecker {
         }
     }
 
-    //Update Number, Each Update Requires A New Number. PasteBin: Reference: UPDATE_NUMBER
     public static int getNewest() throws IOException
     {
         URL url = new URL("https://raw.githubusercontent.com/savageboy74/FluxUtilities/master/UpdateNumber.txt");
@@ -77,7 +76,6 @@ public class UpdateChecker {
         return Integer.parseInt(response.toString());
     }
 
-    //This is the newest version. PasteBin: Reference: NEW_VERSION Keep Updated With The Current Version
     private static String updatedVersion(int version) throws IOException
     {
         URL url = new URL("https://raw.githubusercontent.com/savageboy74/FluxUtilities/master/NewestVersion.txt");
