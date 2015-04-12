@@ -23,11 +23,24 @@ package tv.savageboy74.fluxutils;
  * THE SOFTWARE.
  */
 
+import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Mod;
+import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.common.gameevent.PlayerEvent;
+import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.IChatComponent;
+import tv.savageboy74.fluxutils.common.block.FluxBlocks;
+import tv.savageboy74.fluxutils.common.crafting.FluxRecipes;
+import tv.savageboy74.fluxutils.common.creativetab.FluxCreativeTab;
+import tv.savageboy74.fluxutils.common.handler.ConfigHandler;
+import tv.savageboy74.fluxutils.common.item.FluxItems;
+import tv.savageboy74.fluxutils.common.proxy.IProxy;
+import tv.savageboy74.fluxutils.common.tileentity.FluxTileEntities;
 import tv.savageboy74.fluxutils.util.LogHelper;
 import tv.savageboy74.fluxutils.util.Reference;
 import tv.savageboy74.fluxutils.util.StringHelper;
@@ -38,15 +51,27 @@ public class FluxUtils
     @Mod.Instance(Reference.mod_id)
     public static FluxUtils instance;
 
+    @SidedProxy(clientSide = Reference.clientProxy, serverSide = Reference.serverProxy)
+    public static IProxy proxy;
+
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event)
     {
+        FluxCreativeTab.init();
+        FluxBlocks.register();
+        FluxItems.register();
+
+        ConfigHandler.init(event.getSuggestedConfigurationFile());
+        FMLCommonHandler.instance().bus().register(new ConfigHandler());
+
         LogHelper.info("Pre-Initialization Completed.");
     }
 
     @Mod.EventHandler
     public void init(FMLInitializationEvent event)
     {
+        FluxTileEntities.register();
+        FluxRecipes.register();
         LogHelper.info("Initialization Completed.");
     }
 
@@ -63,5 +88,18 @@ public class FluxUtils
             LogHelper.error(StringHelper.localize("mod.thermalexpansion.missing"));
         }
         LogHelper.info("Post-Initialization Completed.");
+    }
+
+    @SubscribeEvent
+    public void checkForUpdate(PlayerEvent.PlayerLoggedInEvent event)
+    {
+        if (Reference.isOutdated)
+        {
+            String text = EnumChatFormatting.GOLD + "[" + Reference.mod_name + "] " + EnumChatFormatting.WHITE + "This version of " + EnumChatFormatting.GOLD  + Reference.mod_name + EnumChatFormatting.WHITE + " is" + EnumChatFormatting.DARK_RED + " outdated!" + EnumChatFormatting.WHITE + "     " + "Newest Version: " + EnumChatFormatting.GREEN + Reference.new_version;
+            String downloadText = "Download";
+            String downloadURL = "https://savageboy74.tv/mods/downloads/FluxUtilities-" + Reference.new_version + ".jar";
+            event.player.addChatComponentMessage(new IChatComponent.Serializer().func_150699_a("[{\"text\":\"" + text + "\"}," + "{\"text\":\" " + EnumChatFormatting.WHITE + "[" + EnumChatFormatting.GREEN + downloadText + EnumChatFormatting.WHITE + "]\"," + "\"color\":\"green\",\"hoverEvent\":{\"action\":\"show_text\",\"value\":" + "{\"text\":\"Click to download the latest version\",\"color\":\"yellow\"}}," + "\"clickEvent\":{\"action\":\"open_url\",\"value\":\"" + downloadURL + "\"}}]"));
+
+        }
     }
 }

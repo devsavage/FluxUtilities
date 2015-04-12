@@ -1,7 +1,7 @@
-package tv.savageboy74.fluxutils.util;
+package tv.savageboy74.fluxutils.common.handler;
 
 /*
- * Reference.java
+ * ConfigHandler.java
  * Copyright (C) 2015 Savage - github.com/savageboy74
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -23,22 +23,40 @@ package tv.savageboy74.fluxutils.util;
  * THE SOFTWARE.
  */
 
-public class Reference
+import cpw.mods.fml.client.event.ConfigChangedEvent;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.common.config.Configuration;
+import tv.savageboy74.fluxutils.util.Reference;
+
+import java.io.File;
+
+public class ConfigHandler
 {
-    public static final String mod_id = "fluxutilities";
-    public static final String mod_name = "FluxUtilities";
-    public static final String mod_version = "1.7.10-0.0.1";
-    public static final String mc_version = "1.7.10";
-    public static final String dependencies = "required-after:CoFHCore@[1.7.10R3.0.0RC7,)";
+    public static Configuration config;
 
-    public static final String clientProxy = "tv.savageboy74.fluxutils.common.proxy.ClientProxy";
-    public static final String serverProxy = "tv.savageboy74.fluxutils.common.proxy.ServerProxy";
+    public static void init(File configFile)
+    {
+        if (config == null)
+        {
+            config = new Configuration(new File("config/FluxUtils.cfg"));
+            loadConfig();
+        }
+    }
 
-    //Update Checking
-    public static final int update_number = 1;
-    public static String current_version = mod_version;
-    public static String new_version = "";
-    public static String updates = "";
-    public static boolean isOutdated = false;
+    private static void loadConfig()
+    {
+        if (config.hasChanged())
+        {
+            config.save();
+        }
+    }
 
+    @SubscribeEvent
+    public void onConfigChanged(ConfigChangedEvent.OnConfigChangedEvent event)
+    {
+        if (event.modID.equalsIgnoreCase(Reference.mod_id))
+        {
+            loadConfig();
+        }
+    }
 }

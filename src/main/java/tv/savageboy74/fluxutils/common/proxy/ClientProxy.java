@@ -1,7 +1,7 @@
-package tv.savageboy74.fluxutils.util;
+package tv.savageboy74.fluxutils.common.proxy;
 
 /*
- * Reference.java
+ * ClientProxy.java
  * Copyright (C) 2015 Savage - github.com/savageboy74
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -23,22 +23,35 @@ package tv.savageboy74.fluxutils.util;
  * THE SOFTWARE.
  */
 
-public class Reference
+public class ClientProxy extends CommonProxy
 {
-    public static final String mod_id = "fluxutilities";
-    public static final String mod_name = "FluxUtilities";
-    public static final String mod_version = "1.7.10-0.0.1";
-    public static final String mc_version = "1.7.10";
-    public static final String dependencies = "required-after:CoFHCore@[1.7.10R3.0.0RC7,)";
+    @Override
+    public ClientProxy getClientProxy()
+    {
+        return this;
+    }
 
-    public static final String clientProxy = "tv.savageboy74.fluxutils.common.proxy.ClientProxy";
-    public static final String serverProxy = "tv.savageboy74.fluxutils.common.proxy.ServerProxy";
+    @Override
+    public void initRendering()
+    {
 
-    //Update Checking
-    public static final int update_number = 1;
-    public static String current_version = mod_version;
-    public static String new_version = "";
-    public static String updates = "";
-    public static boolean isOutdated = false;
+    }
 
+    @Override
+    public void registerEventHandlers()
+    {
+
+    }
+
+    @Override
+    public void registerKeyBindings()
+    {
+
+    }
+
+    @Override
+    public void playSound(String soundName, float x, float y, float z, float volume, float pitch)
+    {
+
+    }
 }
