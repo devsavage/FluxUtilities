@@ -102,7 +102,7 @@ public class ThaumcraftHelper {
 	 *            <b>entry format</b>: '<code>\d+ .+</code>'
 	 *            </ol>
 	 * @param craftedAspects
-	 *            True if the item should inherit aspects from its crafting ingredients
+	 *            True if the item should inherit aspects from its inventory ingredients
 	 * @throws Throwable
 	 *             Any errors caused by reflection
 	 */
@@ -154,7 +154,7 @@ public class ThaumcraftHelper {
 	 *            <b>entry format</b>: '<code>\d+ .+</code>'
 	 *            </ol>
 	 * @param craftedAspects
-	 *            True if the item should inherit aspects from its crafting ingredients
+	 *            True if the item should inherit aspects from its inventory ingredients
 	 * @throws Throwable
 	 *             Any errors caused by reflection
 	 */
@@ -175,7 +175,7 @@ public class ThaumcraftHelper {
 	 *            <b>entry format</b>: '<code>\d+ .+</code>'
 	 *            </ol>
 	 * @param craftedAspects
-	 *            True if the item should inherit aspects from its crafting ingredients
+	 *            True if the item should inherit aspects from its inventory ingredients
 	 * @throws Throwable
 	 *             Any errors caused by reflection
 	 */
@@ -237,7 +237,7 @@ public class ThaumcraftHelper {
 	 *            <b>entry format</b>: '<code>\d+ .+</code>'
 	 *            </ol>
 	 * @param craftedAspects
-	 *            True if the item should inherit aspects from its crafting ingredients
+	 *            True if the item should inherit aspects from its inventory ingredients
 	 * @throws Throwable
 	 *             Any errors caused by reflection
 	 */
@@ -258,7 +258,7 @@ public class ThaumcraftHelper {
 	 *            <b>entry format</b>: '<code>\d+ .+</code>'
 	 *            </ol>
 	 * @param craftedAspects
-	 *            True if the item should inherit aspects from its crafting ingredients
+	 *            True if the item should inherit aspects from its inventory ingredients
 	 * @throws Throwable
 	 *             Any errors caused by reflection
 	 */

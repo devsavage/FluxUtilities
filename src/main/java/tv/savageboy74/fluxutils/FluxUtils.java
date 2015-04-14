@@ -32,14 +32,17 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent;
+import cpw.mods.fml.common.network.NetworkRegistry;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.IChatComponent;
 import net.minecraftforge.common.MinecraftForge;
 import tv.savageboy74.fluxutils.common.block.FluxBlocks;
-import tv.savageboy74.fluxutils.common.crafting.FluxRecipes;
+import tv.savageboy74.fluxutils.common.handler.GuiHandler;
+import tv.savageboy74.fluxutils.common.inventory.FluxRecipes;
 import tv.savageboy74.fluxutils.common.creativetab.FluxCreativeTab;
 import tv.savageboy74.fluxutils.common.handler.ConfigHandler;
 import tv.savageboy74.fluxutils.common.item.FluxItems;
+import tv.savageboy74.fluxutils.common.network.packet.PacketHandler;
 import tv.savageboy74.fluxutils.common.proxy.IProxy;
 import tv.savageboy74.fluxutils.common.tileentity.FluxTileEntities;
 import tv.savageboy74.fluxutils.util.LogHelper;
@@ -68,10 +71,13 @@ public class FluxUtils
         ConfigHandler.init(event.getSuggestedConfigurationFile());
         FMLCommonHandler.instance().bus().register(new ConfigHandler());
 
+
+
         //Check For Updates
         //TODO Config option
         FMLCommonHandler.instance().bus().register(this);
         MinecraftForge.EVENT_BUS.register(this);
+        PacketHandler.registerPackets();
         try {
             LogHelper.info("Checking for updates...");
             UpdateChecker.checkForUpdates();
@@ -87,6 +93,8 @@ public class FluxUtils
     {
         FluxTileEntities.register();
         FluxRecipes.register();
+        NetworkRegistry.INSTANCE.registerGuiHandler(instance, new GuiHandler());
+        proxy.initRendering();
         LogHelper.info("Initialization Completed.");
     }
 

@@ -1,7 +1,7 @@
-package tv.savageboy74.fluxutils.common.proxy;
+package tv.savageboy74.fluxutils.client.blocks.machines.solar.model.solar;
 
 /*
- * ClientProxy.java
+ * ItemRenderSolarPanel.java
  * Copyright (C) 2015 Savage - github.com/savageboy74
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -23,34 +23,42 @@ package tv.savageboy74.fluxutils.common.proxy;
  * THE SOFTWARE.
  */
 
-public class ClientProxy extends CommonProxy
+import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraftforge.client.IItemRenderer;
+import org.lwjgl.opengl.GL11;
+
+public class ItemRenderSolarUpgrade implements IItemRenderer
 {
-    @Override
-    public ClientProxy getClientProxy()
+    TileEntitySpecialRenderer render;
+    private TileEntity entity;
+
+    public ItemRenderSolarUpgrade(TileEntitySpecialRenderer render, TileEntity entity)
     {
-        return this;
+        this.entity = entity;
+        this.render = render;
+    }
+
+
+    @Override
+    public boolean shouldUseRenderHelper(IItemRenderer.ItemRenderType type, ItemStack item, IItemRenderer.ItemRendererHelper helper)
+    {
+        return true;
     }
 
     @Override
-    public void initRendering()
+    public void renderItem(IItemRenderer.ItemRenderType type, ItemStack item, Object... data)
     {
-    }
-
-    @Override
-    public void registerEventHandlers()
-    {
-
-    }
-
-    @Override
-    public void registerKeyBindings()
-    {
+        if(type == IItemRenderer.ItemRenderType.ENTITY)
+            GL11.glTranslatef(-0.5F, 0.0F, -0.5F);
+        this.render.renderTileEntityAt(this.entity, 0.0D, 0.0D, 0.0D, 0.0F);
 
     }
 
     @Override
-    public void playSound(String soundName, float x, float y, float z, float volume, float pitch)
+    public boolean handleRenderType(ItemStack item, IItemRenderer.ItemRenderType type)
     {
-
+        return true;
     }
 }

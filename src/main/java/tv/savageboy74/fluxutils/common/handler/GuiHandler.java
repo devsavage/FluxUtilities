@@ -1,7 +1,7 @@
-package tv.savageboy74.fluxutils.common.tileentity;
+package tv.savageboy74.fluxutils.common.handler;
 
 /*
- * FluxTileEntities.java
+ * GuiHandler.java
  * Copyright (C) 2015 Savage - github.com/savageboy74
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -23,13 +23,37 @@ package tv.savageboy74.fluxutils.common.tileentity;
  * THE SOFTWARE.
  */
 
-import cpw.mods.fml.common.registry.GameRegistry;
+import cpw.mods.fml.common.network.IGuiHandler;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.world.World;
+import tv.savageboy74.fluxutils.client.blocks.machines.solar.ContainerSolarPanel;
 import tv.savageboy74.fluxutils.client.blocks.machines.solar.TileEntitySolarPanel;
+import tv.savageboy74.fluxutils.common.inventory.gui.GuiSolarPanel;
+import tv.savageboy74.fluxutils.util.GUI;
 
-public class FluxTileEntities
+public class GuiHandler implements IGuiHandler
 {
-    public static void register()
+    @Override
+    public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z)
     {
-        GameRegistry.registerTileEntity(TileEntitySolarPanel.class, "SolarPanel");
+        if(ID == GUI.IDs.SOLAR_PANEL.ordinal())
+        {
+            TileEntitySolarPanel tileSolarPanel = (TileEntitySolarPanel) world.getTileEntity(x, y, z);
+            return new ContainerSolarPanel(player, tileSolarPanel);
+        }
+
+        return null;
+    }
+
+    @Override
+    public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z)
+    {
+        if(ID == GUI.IDs.SOLAR_PANEL.ordinal())
+        {
+            TileEntitySolarPanel tileSolarPanel = (TileEntitySolarPanel) world.getTileEntity(x, y, z);
+            return new GuiSolarPanel(player, tileSolarPanel);
+        }
+
+        return null;
     }
 }

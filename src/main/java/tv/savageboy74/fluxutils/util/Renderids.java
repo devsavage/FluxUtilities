@@ -1,7 +1,7 @@
-package tv.savageboy74.fluxutils.common.crafting;
+package tv.savageboy74.fluxutils.util;
 
 /*
- * FluxRecipes.java
+ * RenderIds.java
  * Copyright (C) 2015 Savage - github.com/savageboy74
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -22,11 +22,10 @@ package tv.savageboy74.fluxutils.common.crafting;
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
-public class FluxRecipes
+public class RenderIds
 {
-    public static void register()
-    {
-
-    }
+    public static int BASIC_SOLAR_PANEL;
+    public static int HARDENED_SOLAR_PANEL;
+    public static int REINFORCED_SOLAR_PANEL;
+    public static int RESONANT_SOLAR_PANEL;
 }

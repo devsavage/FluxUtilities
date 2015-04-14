@@ -23,6 +23,152 @@ package tv.savageboy74.fluxutils.common.tileentity;
  * THE SOFTWARE.
  */
 
-public class FluxTileEntity
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.Packet;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraftforge.common.util.ForgeDirection;
+import tv.savageboy74.fluxutils.common.network.message.MessageFluxTileEntity;
+import tv.savageboy74.fluxutils.common.network.packet.PacketHandler;
+import tv.savageboy74.fluxutils.util.Strings;
+
+public class FluxTileEntity extends TileEntity
 {
+    protected ForgeDirection orientation;
+    protected byte state;
+    protected String customName;
+    protected String owner;
+
+    public FluxTileEntity()
+    {
+        orientation = ForgeDirection.SOUTH;
+        state = 0;
+        customName = "";
+        owner = "";
+    }
+
+    public ForgeDirection getOrientation()
+    {
+        return orientation;
+    }
+
+    public void setOrientation(ForgeDirection orientation)
+    {
+        this.orientation = orientation;
+    }
+
+    public void setOrientation(int orientation)
+    {
+        this.orientation = ForgeDirection.getOrientation(orientation);
+    }
+
+    public short getState()
+    {
+        return state;
+    }
+
+    public void setState(byte state)
+    {
+        this.state = state;
+    }
+
+    public String getCustomName()
+    {
+        return customName;
+    }
+
+    public void setCustomName(String customName)
+    {
+        this.customName = customName;
+    }
+
+    public String getOwner()
+    {
+        return owner;
+    }
+
+    public void setOwner(String owner)
+    {
+        this.owner = owner;
+    }
+
+    @Override
+    public void readFromNBT(NBTTagCompound nbtTagCompound)
+    {
+        super.readFromNBT(nbtTagCompound);
+
+        if (nbtTagCompound.hasKey(Strings.NBT.DIRECTION))
+        {
+            this.orientation = ForgeDirection.getOrientation(nbtTagCompound.getByte(Strings.NBT.DIRECTION));
+        }
+
+        if (nbtTagCompound.hasKey(Strings.NBT.STATE))
+        {
+            this.state = nbtTagCompound.getByte(Strings.NBT.STATE);
+        }
+
+        if (nbtTagCompound.hasKey(Strings.NBT.CUSTOM_NAME))
+        {
+            this.customName = nbtTagCompound.getString(Strings.NBT.CUSTOM_NAME);
+        }
+
+        if (nbtTagCompound.hasKey(Strings.NBT.OWNER))
+        {
+            this.owner = nbtTagCompound.getString(Strings.NBT.OWNER);
+        }
+    }
+
+    @Override
+    public void writeToNBT(NBTTagCompound nbtTagCompound)
+    {
+        super.writeToNBT(nbtTagCompound);
+
+        nbtTagCompound.setByte(Strings.NBT.DIRECTION, (byte) orientation.ordinal());
+        nbtTagCompound.setByte(Strings.NBT.STATE, state);
+
+        if (this.hasCustomName())
+        {
+            nbtTagCompound.setString(Strings.NBT.CUSTOM_NAME, customName);
+        }
+
+        if (this.hasOwner())
+        {
+            nbtTagCompound.setString(Strings.NBT.OWNER, owner);
+        }
+    }
+
+    public boolean hasCustomName()
+    {
+        return customName != null && customName.length() > 0;
+    }
+
+    public boolean hasOwner()
+    {
+        return owner != null && owner.length() > 0;
+    }
+
+    @Override
+    public Packet getDescriptionPacket()
+    {
+        return PacketHandler.INSTANCE.getPacketFrom(new MessageFluxTileEntity(this));
+    }
+
+    public int x() {
+        return xCoord;
+    }
+
+    public int y() {
+        return yCoord;
+    }
+
+    public int z() {
+        return zCoord;
+    }
+
+    public boolean isClient() {
+        return getWorldObj().isRemote;
+    }
+
+    public boolean isServer() {
+        return !isClient();
+    }
 }

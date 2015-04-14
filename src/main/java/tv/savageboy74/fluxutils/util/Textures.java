@@ -1,7 +1,7 @@
-package tv.savageboy74.fluxutils.common.proxy;
+package tv.savageboy74.fluxutils.util;
 
 /*
- * ClientProxy.java
+ * Textures.java
  * Copyright (C) 2015 Savage - github.com/savageboy74
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -23,34 +23,28 @@ package tv.savageboy74.fluxutils.common.proxy;
  * THE SOFTWARE.
  */
 
-public class ClientProxy extends CommonProxy
+import net.minecraft.util.ResourceLocation;
+
+public class Textures
 {
-    @Override
-    public ClientProxy getClientProxy()
+    public static final String RESOURCE_PREFIX = Reference.mod_id.toLowerCase() + ":";
+
+    public static final class Gui
     {
-        return this;
+        private static final String GUI_SHEET_LOCATION = "textures/gui/";
+        public static final ResourceLocation SOLAR_PANEL = ResourceLocationHelper.getResourceLocation(GUI_SHEET_LOCATION + "GuiSolarPanel.png");
     }
 
-    @Override
-    public void initRendering()
+    public static class ResourceLocationHelper
     {
-    }
+        public static ResourceLocation getResourceLocation(String modId, String path)
+        {
+            return new ResourceLocation(modId, path);
+        }
 
-    @Override
-    public void registerEventHandlers()
-    {
-
-    }
-
-    @Override
-    public void registerKeyBindings()
-    {
-
-    }
-
-    @Override
-    public void playSound(String soundName, float x, float y, float z, float volume, float pitch)
-    {
-
+        public static ResourceLocation getResourceLocation(String path)
+        {
+            return getResourceLocation(Reference.mod_id.toLowerCase(), path);
+        }
     }
 }

@@ -25,7 +25,7 @@ package tv.savageboy74.fluxutils.util;
 
 public class Reference
 {
-    public static final String mod_id = "fluxutilities";
+    public static final String mod_id = "fluxutils";
     public static final String mod_name = "FluxUtilities";
     public static final String mod_version = "1.7.10-0.0.1";
     public static final String mc_version = "1.7.10";

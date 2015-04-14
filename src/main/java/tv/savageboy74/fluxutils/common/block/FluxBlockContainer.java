@@ -1,7 +1,7 @@
-package tv.savageboy74.fluxutils.common.proxy;
+package tv.savageboy74.fluxutils.common.block;
 
 /*
- * ClientProxy.java
+ * FluxBlockContainer.java
  * Copyright (C) 2015 Savage - github.com/savageboy74
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -23,34 +23,36 @@ package tv.savageboy74.fluxutils.common.proxy;
  * THE SOFTWARE.
  */
 
-public class ClientProxy extends CommonProxy
+import net.minecraft.block.ITileEntityProvider;
+import net.minecraft.block.material.Material;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.World;
+import tv.savageboy74.fluxutils.common.creativetab.FluxCreativeTab;
+
+public abstract class FluxBlockContainer extends FluxBlock implements ITileEntityProvider
 {
-    @Override
-    public ClientProxy getClientProxy()
+
+    public FluxBlockContainer(Material material)
     {
-        return this;
+        super(material);
+        this.isBlockContainer = true;
+        this.setCreativeTab(FluxCreativeTab.fluxTab);
+    }
+
+    public FluxBlockContainer()
+    {
+        super(Material.rock);
     }
 
     @Override
-    public void initRendering()
+    public boolean onBlockEventReceived(World world, int x, int y, int z, int eventNumber, int arg)
     {
-    }
-
-    @Override
-    public void registerEventHandlers()
-    {
-
-    }
-
-    @Override
-    public void registerKeyBindings()
-    {
-
-    }
-
-    @Override
-    public void playSound(String soundName, float x, float y, float z, float volume, float pitch)
-    {
-
+        super.onBlockEventReceived(world, x, y, z, eventNumber, arg);
+        TileEntity tileentity = world.getTileEntity(x, y, z);
+        if (tileentity != null)
+        {
+            return tileentity.receiveClientEvent(eventNumber, arg);
+        }
+        return false;
     }
 }

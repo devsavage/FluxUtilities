@@ -1,7 +1,7 @@
-package tv.savageboy74.fluxutils.common.proxy;
+package tv.savageboy74.fluxutils.common.network.packet;
 
 /*
- * ClientProxy.java
+ * PacketHandler.java
  * Copyright (C) 2015 Savage - github.com/savageboy74
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -23,34 +23,20 @@ package tv.savageboy74.fluxutils.common.proxy;
  * THE SOFTWARE.
  */
 
-public class ClientProxy extends CommonProxy
+import cpw.mods.fml.common.network.NetworkRegistry;
+import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
+import cpw.mods.fml.relauncher.Side;
+import tv.savageboy74.fluxutils.common.network.message.MessageFluxTileEntity;
+import tv.savageboy74.fluxutils.common.network.message.MessageSolarPanel;
+import tv.savageboy74.fluxutils.util.Reference;
+
+public class PacketHandler
 {
-    @Override
-    public ClientProxy getClientProxy()
+    public static final SimpleNetworkWrapper INSTANCE = NetworkRegistry.INSTANCE.newSimpleChannel(Reference.mod_id.toLowerCase());
+
+    public static void registerPackets()
     {
-        return this;
-    }
-
-    @Override
-    public void initRendering()
-    {
-    }
-
-    @Override
-    public void registerEventHandlers()
-    {
-
-    }
-
-    @Override
-    public void registerKeyBindings()
-    {
-
-    }
-
-    @Override
-    public void playSound(String soundName, float x, float y, float z, float volume, float pitch)
-    {
-
+        INSTANCE.registerMessage(MessageFluxTileEntity.class, MessageFluxTileEntity.class, 0, Side.CLIENT);
+        INSTANCE.registerMessage(MessageSolarPanel.class, MessageSolarPanel.class, 1, Side.CLIENT);
     }
 }

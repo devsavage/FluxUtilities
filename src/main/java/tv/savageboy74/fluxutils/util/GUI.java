@@ -1,7 +1,7 @@
-package tv.savageboy74.fluxutils.common.proxy;
+package tv.savageboy74.fluxutils.util;
 
 /*
- * ClientProxy.java
+ * GUI.java
  * Copyright (C) 2015 Savage - github.com/savageboy74
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -23,34 +23,10 @@ package tv.savageboy74.fluxutils.common.proxy;
  * THE SOFTWARE.
  */
 
-public class ClientProxy extends CommonProxy
+public class GUI
 {
-    @Override
-    public ClientProxy getClientProxy()
+    public static enum  IDs
     {
-        return this;
-    }
-
-    @Override
-    public void initRendering()
-    {
-    }
-
-    @Override
-    public void registerEventHandlers()
-    {
-
-    }
-
-    @Override
-    public void registerKeyBindings()
-    {
-
-    }
-
-    @Override
-    public void playSound(String soundName, float x, float y, float z, float volume, float pitch)
-    {
-
+        SOLAR_PANEL
     }
 }

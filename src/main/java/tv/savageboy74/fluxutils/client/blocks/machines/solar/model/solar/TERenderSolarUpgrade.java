@@ -1,7 +1,7 @@
-package tv.savageboy74.fluxutils.common.proxy;
+package tv.savageboy74.fluxutils.client.blocks.machines.solar.model.solar;
 
 /*
- * ClientProxy.java
+ * TERenderSolarUpgrade.java
  * Copyright (C) 2015 Savage - github.com/savageboy74
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -23,34 +23,13 @@ package tv.savageboy74.fluxutils.common.proxy;
  * THE SOFTWARE.
  */
 
-public class ClientProxy extends CommonProxy
+import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
+import net.minecraft.tileentity.TileEntity;
+
+public class TERenderSolarUpgrade extends TileEntitySpecialRenderer
 {
     @Override
-    public ClientProxy getClientProxy()
+    public void renderTileEntityAt(TileEntity tileEntity, double x, double y, double z, float f)
     {
-        return this;
-    }
-
-    @Override
-    public void initRendering()
-    {
-    }
-
-    @Override
-    public void registerEventHandlers()
-    {
-
-    }
-
-    @Override
-    public void registerKeyBindings()
-    {
-
-    }
-
-    @Override
-    public void playSound(String soundName, float x, float y, float z, float volume, float pitch)
-    {
-
     }
 }
