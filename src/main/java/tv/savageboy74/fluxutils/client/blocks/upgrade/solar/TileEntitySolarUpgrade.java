@@ -1,7 +1,7 @@
-package tv.savageboy74.fluxutils.client.blocks.machines.solar.model.solar;
+package tv.savageboy74.fluxutils.client.blocks.upgrade.solar;
 
 /*
- * TERenderSolarUpgrade.java
+ * TileEntitySolarUpgrade.java
  * Copyright (C) 2015 Savage - github.com/savageboy74
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -23,13 +23,9 @@ package tv.savageboy74.fluxutils.client.blocks.machines.solar.model.solar;
  * THE SOFTWARE.
  */
 
-import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 
-public class TERenderSolarUpgrade extends TileEntitySpecialRenderer
+public class TileEntitySolarUpgrade extends TileEntity
 {
-    @Override
-    public void renderTileEntityAt(TileEntity tileEntity, double x, double y, double z, float f)
-    {
-    }
+    public int direction;
 }

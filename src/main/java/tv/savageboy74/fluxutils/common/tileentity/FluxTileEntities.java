@@ -25,11 +25,13 @@ package tv.savageboy74.fluxutils.common.tileentity;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import tv.savageboy74.fluxutils.client.blocks.machines.solar.TileEntitySolarPanel;
+import tv.savageboy74.fluxutils.client.blocks.upgrade.solar.TileEntitySolarUpgrade;
 
 public class FluxTileEntities
 {
     public static void register()
     {
         GameRegistry.registerTileEntity(TileEntitySolarPanel.class, "SolarPanel");
+        GameRegistry.registerTileEntity(TileEntitySolarUpgrade.class, "SolarUpgrade");
     }
 }

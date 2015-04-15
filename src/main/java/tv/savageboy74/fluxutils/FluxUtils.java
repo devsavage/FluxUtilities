@@ -33,6 +33,9 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
+import cpw.mods.fml.common.registry.GameRegistry;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.IChatComponent;
 import net.minecraftforge.common.MinecraftForge;
@@ -103,6 +106,7 @@ public class FluxUtils
     {
         if (Loader.isModLoaded("ThermalExpansion"))
         {
+            FluxRecipes.registerThermalExpansionRecipes();
             LogHelper.info(StringHelper.localize("mod.thermalexpansion.found"));
         }
 
@@ -110,6 +114,7 @@ public class FluxUtils
         {
             LogHelper.error(StringHelper.localize("mod.thermalexpansion.missing"));
         }
+
         LogHelper.info("Post-Initialization Completed.");
     }
 

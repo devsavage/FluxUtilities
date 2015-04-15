@@ -27,7 +27,7 @@ public class Reference
 {
     public static final String mod_id = "fluxutils";
     public static final String mod_name = "FluxUtilities";
-    public static final String mod_version = "1.7.10-0.0.1";
+    public static final String mod_version = "1.7.10-0.0.2";
     public static final String mc_version = "1.7.10";
     public static final String dependencies = "required-after:CoFHCore@[1.7.10R3.0.0RC7,)";
 

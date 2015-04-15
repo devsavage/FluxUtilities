@@ -31,6 +31,11 @@ public class Strings
         public static final String HARDENED_SOLAR = "HardenedSolarPanel";
         public static final String REINFORCED_SOLAR = "ReinforcedSolarPanel";
         public static final String RESONANT_SOLAR = "ResonantSolarPanel";
+        public static final String SOLAR_UPGRADE = "SolarUpgrade";
+        public static final String BASIC_SOLAR_BASE = "BasicSolarBase";
+        public static final String HARDENED_SOLAR_BASE = "HardenedSolarBase";
+        public static final String REINFORCED_SOLAR_BASE = "ReinforcedSolarBase";
+        public static final String RESONANT_SOLAR_BASE = "ResonantSolarBase";
     }
 
     public static final class NBT

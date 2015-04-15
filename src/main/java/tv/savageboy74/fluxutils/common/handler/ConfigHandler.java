@@ -34,6 +34,8 @@ public class ConfigHandler
 {
     public static Configuration config;
 
+    public static boolean keepEnergy = true;
+
     public static void init(File configFile)
     {
         if (config == null)
@@ -45,6 +47,7 @@ public class ConfigHandler
 
     private static void loadConfig()
     {
+        keepEnergy = config.getBoolean("Keep Energy When Wrenched", Configuration.CATEGORY_GENERAL, true, "Save energy when shift-right clicking on a block (ex. Solar Panel)");
         if (config.hasChanged())
         {
             config.save();

@@ -28,7 +28,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 import tv.savageboy74.fluxutils.client.blocks.machines.solar.ContainerSolarPanel;
 import tv.savageboy74.fluxutils.client.blocks.machines.solar.TileEntitySolarPanel;
-import tv.savageboy74.fluxutils.common.inventory.gui.GuiSolarPanel;
+import tv.savageboy74.fluxutils.client.blocks.machines.solar.GuiSolarPanel;
 import tv.savageboy74.fluxutils.util.GUI;
 
 public class GuiHandler implements IGuiHandler

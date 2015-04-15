@@ -23,10 +23,28 @@ package tv.savageboy74.fluxutils.common.inventory;
  * THE SOFTWARE.
  */
 
+import cofh.thermalexpansion.block.simple.BlockFrame;
+import cpw.mods.fml.common.registry.GameRegistry;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.oredict.ShapedOreRecipe;
+import tv.savageboy74.fluxutils.common.block.FluxBlocks;
+
 public class FluxRecipes
 {
     public static void register()
     {
+    }
 
+    public static void registerThermalExpansionRecipes()
+    {
+        ItemStack machineBasic = new ItemStack(GameRegistry.findBlock("ThermalExpansion", "Frame"), 1, 0);
+        ItemStack machineHardened = new ItemStack(GameRegistry.findBlock("ThermalExpansion", "Frame"), 1, 1);
+        ItemStack machineReinforced = new ItemStack(GameRegistry.findBlock("ThermalExpansion", "Frame"), 1, 2);
+        ItemStack machineResonant = new ItemStack(GameRegistry.findBlock("ThermalExpansion", "Frame"), 1, 3);
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(FluxBlocks.basicSolarBase, 1), new Object[]{ "III", "IFI", "III", 'I', "blockTin", 'F', machineBasic}));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(FluxBlocks.hardenedSolarBase, 1), new Object[]{ "III", "IFI", "III", 'I', "blockElectrum", 'F', machineHardened}));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(FluxBlocks.reinforcedSolarBase, 1), new Object[]{ "III", "IFI", "III", 'I', "blockSignalum", 'F', machineReinforced}));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(FluxBlocks.resonantSolarBase, 1), new Object[]{ "III", "IFI", "III", 'I', "blockEnderium", 'F', machineResonant}));
     }
 }

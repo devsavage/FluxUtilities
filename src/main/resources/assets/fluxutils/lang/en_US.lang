@@ -1,5 +1,16 @@
 # Lang file for FluxUtilities
 
+# Blocks
+tile.fluxutils:BasicSolarPanel.name=Basic Solar Panel
+tile.fluxutils:HardenedSolarPanel.name=Hardened Solar Panel
+tile.fluxutils:ReinforcedSolarPanel.name=§eReinforced Solar Panel§r
+tile.fluxutils:ResonantSolarPanel.name=§bResonant Solar Panel§r
+tile.fluxutils:SolarUpgrade.name=Solar Upgrade
+tile.fluxutils:BasicSolarBase.name=Basic Solar Base
+tile.fluxutils:HardenedSolarBase.name=Hardened Solar Base
+tile.fluxutils:ReinforcedSolarBase.name=§eReinforced Solar Base§r
+tile.fluxutils:ResonantSolarBase.name=§bResonant Solar Base§r
+
 # Creative Tab
 itemGroup.fluxTab=Flux Utilities
 

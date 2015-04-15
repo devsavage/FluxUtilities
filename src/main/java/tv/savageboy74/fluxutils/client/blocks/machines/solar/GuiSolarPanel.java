@@ -1,4 +1,4 @@
-package tv.savageboy74.fluxutils.common.inventory.gui;
+package tv.savageboy74.fluxutils.client.blocks.machines.solar;
 
 /*
  * GuiSolarPanel.java
@@ -27,9 +27,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.EntityPlayer;
 import org.lwjgl.opengl.GL11;
-import tv.savageboy74.fluxutils.client.blocks.machines.solar.BlockSolarPanel;
-import tv.savageboy74.fluxutils.client.blocks.machines.solar.ContainerSolarPanel;
-import tv.savageboy74.fluxutils.client.blocks.machines.solar.TileEntitySolarPanel;
+import tv.savageboy74.fluxutils.util.Strings;
 import tv.savageboy74.fluxutils.util.Textures;
 
 import java.text.NumberFormat;
@@ -50,11 +48,11 @@ public class GuiSolarPanel extends GuiContainer
     private void initDisplay()
     {
         //Neat way of doing this, huh?
-        if(tileSolarPanel.getBlockType().getMaterial() == Material.redstoneLight) {
+        if(tileSolarPanel.getBlockType().getMaterial() == Material.packedIce) {
             displayName = "Basic Solar Panel";
-        } else if (tileSolarPanel.getBlockType().getMaterial() == Material.iron) {
+        } else if (tileSolarPanel.getBlockType().getMaterial() == Material.rock) {
             displayName = "Hardened Solar Panel";
-        } else if (tileSolarPanel.getBlockType().getMaterial() == Material.coral) {
+        } else if (tileSolarPanel.getBlockType().getMaterial() == Material.iron) {
             displayName = "Reinforced Solar Panel";
         } else if (tileSolarPanel.getBlockType().getMaterial() == Material.anvil) {
             displayName = "Resonant Solar Panel";

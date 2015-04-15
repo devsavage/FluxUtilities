@@ -1,4 +1,4 @@
-package tv.savageboy74.fluxutils.client.blocks.machines.solar.model.solar;
+package tv.savageboy74.fluxutils.client.blocks.upgrade.solar.model;
 
 /*
  * ItemRenderSolarPanel.java

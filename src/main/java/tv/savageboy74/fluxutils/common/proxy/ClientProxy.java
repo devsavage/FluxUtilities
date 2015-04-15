@@ -23,6 +23,15 @@ package tv.savageboy74.fluxutils.common.proxy;
  * THE SOFTWARE.
  */
 
+import cpw.mods.fml.client.registry.ClientRegistry;
+import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
+import net.minecraft.item.Item;
+import net.minecraftforge.client.MinecraftForgeClient;
+import tv.savageboy74.fluxutils.client.blocks.upgrade.solar.TileEntitySolarUpgrade;
+import tv.savageboy74.fluxutils.client.blocks.upgrade.solar.model.ItemRenderSolarUpgrade;
+import tv.savageboy74.fluxutils.client.blocks.upgrade.solar.model.TERenderSolarUpgrade;
+import tv.savageboy74.fluxutils.common.block.FluxBlocks;
+
 public class ClientProxy extends CommonProxy
 {
     @Override
@@ -34,6 +43,10 @@ public class ClientProxy extends CommonProxy
     @Override
     public void initRendering()
     {
+        TileEntitySpecialRenderer renderer = new TERenderSolarUpgrade();
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntitySolarUpgrade.class, renderer);
+        MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(FluxBlocks.solarUpgrade), new ItemRenderSolarUpgrade(renderer, new TileEntitySolarUpgrade()));
+
     }
 
     @Override

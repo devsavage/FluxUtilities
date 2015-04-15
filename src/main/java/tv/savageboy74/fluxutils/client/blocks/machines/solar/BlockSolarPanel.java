@@ -30,21 +30,21 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import tv.savageboy74.fluxutils.FluxUtils;
 import tv.savageboy74.fluxutils.common.block.FluxBlockContainer;
-import tv.savageboy74.fluxutils.util.GUI;
-import tv.savageboy74.fluxutils.util.Reference;
-import tv.savageboy74.fluxutils.util.Strings;
+import tv.savageboy74.fluxutils.common.handler.ConfigHandler;
+import tv.savageboy74.fluxutils.util.*;
 
 public class BlockSolarPanel extends FluxBlockContainer
 {
     protected final int maxEnergyGeneration;
     protected final int maxEnergyTransfer;
     protected final int maxEnergyCapacity;
-    private final int type;
+    public final int type;
 
     @SideOnly(Side.CLIENT)
     private IIcon solarIconTop;
@@ -78,6 +78,16 @@ public class BlockSolarPanel extends FluxBlockContainer
         setStepSound(soundTypeMetal);
     }
 
+    public BlockSolarPanel(int energyGen, int energyCapacity, int type)
+    {
+        this.maxEnergyGeneration = energyGen;
+        this.maxEnergyTransfer = maxEnergyGeneration * 4;
+        this.maxEnergyCapacity = energyCapacity;
+        this.type = type;
+    }
+
+
+
     public int getMaxEnergyGeneration()
     {
         return maxEnergyGeneration;
@@ -108,7 +118,6 @@ public class BlockSolarPanel extends FluxBlockContainer
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister iconRegister)
     {
-        //What a terrible way to do this.
         this.blockIcon = iconRegister.registerIcon(Reference.mod_id + ":" + "solar_panel");
         this.solarIconTop = iconRegister.registerIcon(Reference.mod_id + ":" + "solar_panel_top");
         this.solarIconBottom = iconRegister.registerIcon(Reference.mod_id + ":" + "solar_panel_bottom");
@@ -122,7 +131,6 @@ public class BlockSolarPanel extends FluxBlockContainer
     @Override
     public IIcon getIcon(int side, int meta)
     {
-        //I could probably do this a little better
         switch (this.type)
         {
             case 4:
@@ -150,19 +158,18 @@ public class BlockSolarPanel extends FluxBlockContainer
     }
 
     @Override
-    public void onBlockAdded(World world, int x, int y, int z)
-    {
-        //TODO Create the blocks via machine frames
-        super.onBlockAdded(world, x, y, z);
-    }
-
-    @Override
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float a, float b, float c)
     {
-        if (!world.isRemote)
+        if (FluxHelper.isServer(world))
         {
             if (world.getTileEntity(x, y, z) instanceof TileEntitySolarPanel)
             {
+                if (player.isSneaking())
+                {
+                    dismantleBlock(world, x, y, z);
+                    return true;
+                }
+
                 player.openGui(FluxUtils.instance, GUI.IDs.SOLAR_PANEL.ordinal(), world, x, y, z);
                 return true;
             }
@@ -170,6 +177,30 @@ public class BlockSolarPanel extends FluxBlockContainer
 
 
         return false;
+    }
+
+    private void dismantleBlock(World world, int x, int y, int z)
+    {
+        ItemStack itemStack = new ItemStack(this);
+
+        if (ConfigHandler.keepEnergy)
+        {
+            TileEntitySolarPanel tileGenerator = (TileEntitySolarPanel) world.getTileEntity(x, y, z);
+            int internalEnergy = tileGenerator.getEnergyStored();
+            if (internalEnergy > 0)
+            {
+                if (itemStack.getTagCompound() == null)
+                {
+                    itemStack.setTagCompound(new NBTTagCompound());
+                }
+
+                itemStack.getTagCompound().setInteger(Strings.NBT.ENERGY, internalEnergy);
+            }
+            LogHelper.advInfo(Reference.mod_name, "Dismantled solar panel with %,d RF.", internalEnergy);
+        }
+
+        world.setBlockToAir(x, y, z);
+        FluxHelper.dropAsEntity(world, x, y, z, itemStack);
     }
 
     @Override
