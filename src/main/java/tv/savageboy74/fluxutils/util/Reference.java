@@ -35,7 +35,7 @@ public class Reference
     public static final String serverProxy = "tv.savageboy74.fluxutils.common.proxy.ServerProxy";
 
     //Update Checking
-    public static final int update_number = 1;
+    public static final int update_number = 2;
     public static String current_version = mod_version;
     public static String new_version = "";
     public static String updates = "";
