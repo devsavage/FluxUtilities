@@ -9,7 +9,7 @@ CoFH Core: 3.0.0RC7+
 
 Links
 =====
-Download Links  
+<a href="https://savageboy74.tv/mods/fluxutils" target="_blank">Download</a>  
 View on CurseForge  
 View on Minecraft Forums  
 
