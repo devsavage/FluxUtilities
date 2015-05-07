@@ -1,4 +1,4 @@
-# FluxUtilities Changelog
+# FluxUtilities Changelog  
 
 1.7.10-0.0.2
 * Bug Fixes and Some Recipes  
